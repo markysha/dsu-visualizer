@@ -1,0 +1,10 @@
+.GraphInput {
+    border: 1px solid black;
+    display: flex;
+}
+
+.GrapghInput-input {
+    display: flex;
+    min-width: 100px;
+    max-width: 300px;
+}
