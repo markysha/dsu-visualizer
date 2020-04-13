@@ -6,9 +6,7 @@ import { setGraph } from '../actions';
 function GraphInput({ graph, setGraph }) {
   return (
     <div className="GraphInput">
-      <form>
-        <textarea className="GraphInput-input" value={graph} onChange={event => setGraph(event.target.value)} />
-      </form>
+      <textarea className="GraphInput-input" value={graph} onChange={event => setGraph(event.target.value)} />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 .GraphInput {
-    border: 1px solid black;
 }
 
-.GrapghInput-input {
+.GraphInput-input {
+    border: 2px solid black;
     min-width: 100px;
     max-width: 300px;
+    font-size: 25px;
 }
