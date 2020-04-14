@@ -23,7 +23,7 @@ class GraphVisualizer extends React.Component {
           data: {id: key}
         })),
         ...this.graph.edges.map(edge => ({
-          data: {id: edge.from + "_" + edge.to, source: edge.from, target: edge.to }
+          data: {id: edge.from + "_" + edge.to, source: edge.from, target: edge.to, weight: edge.weight }
         })),
         // { // edge ab
         //   data: { id: 'ab', source: 'a', target: 'b' }
@@ -45,7 +45,8 @@ class GraphVisualizer extends React.Component {
             'width': 3,
             'line-color': '#ccc',
             'target-arrow-color': '#ccc',
-            'target-arrow-shape': 'triangle'
+            'target-arrow-shape': 'triangle',
+            'label': 'data(weight)' 
           }
         }
       ],
