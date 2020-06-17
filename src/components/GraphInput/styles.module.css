@@ -1,0 +1,35 @@
+.Box {
+    position: fixed;
+    min-width: 20%;
+    min-height: 50%;
+    max-height: 50%;
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+    max-width: 100%; */
+}
+
+.MuiInput-root {
+    /* position: fixed;
+    min-width: 20%;
+    min-height: 50%;
+    max-height: 50%; */
+    
+    border: 1px solid black;
+    border-radius: 5px;
+    /* padding: 10px; */
+
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.MuiInput-input {
+    /* max-height: 50%;
+    font-size: 30px;
+    display: flex; */
+    min-height: 10vh;
+    max-height: 10vh;
+    overflow: scroll;
+}

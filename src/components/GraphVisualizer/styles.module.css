@@ -1,0 +1,9 @@
+.GraphVisualizer {
+    position: fixed;
+    left: 20%;
+    min-width: 80vw;
+    min-height: 90%;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: whitesmoke;
+  }

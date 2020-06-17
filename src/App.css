@@ -1,6 +1,5 @@
 .App {
-  display: flex;
-  justify-content: space-around;
-  align-items: top;
-  /* text-align: center; */
+  display: block;
+  height: 100%;
+  width: 100%;
 }

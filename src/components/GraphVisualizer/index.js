@@ -1,22 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Graph from "../classes/graph";
+import Graph from "../../classes/graph";
 import cytoscape from "cytoscape";
-import "./GraphVisualizer.css";
+import styles from "./styles.module.css";
+
 
 class GraphVisualizer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidUpdate() {
     this.graph = this.props.graph;
 
-    console.log(document.querySelector('.GraphVisualizer'));
+    console.log(document.querySelector('#GraphVisualizer'));
     console.log(this.graph);
     this.cy = cytoscape({
 
-      container: document.querySelector('.GraphVisualizer'), // container to render in
+      container: document.querySelector('#GraphVisualizer'), // container to render in
     
       elements: [
         ...Object.keys(this.graph.vertices).map(key => ({
@@ -51,22 +48,28 @@ class GraphVisualizer extends React.Component {
         }
       ],
       
-      minZoom: 1,
-      maxZoom: 1,
+      // minZoom: 1,
+      // maxZoom: 1,
 
       layout: {
-        name: 'grid',
-        rows: 1
-      }
-    
-    });
+        name: 'breadthfirst',
+        fit: true,
+        // animate: true,
+        // animationDuration: 500,
+      },
+      
+      userZoomingEnabled: false,
+      userPanningEnabled: false,
+      // autolock: true,
 
-    this.cy.animation();
+    });
+    this.cy.fit();
+    this.cy.nodes().ungrabify();
   }
 
   render() {
     return (
-      <div className="GraphVisualizer">
+      <div className={styles.GraphVisualizer} id={"GraphVisualizer"}>
 
       </div>
     );

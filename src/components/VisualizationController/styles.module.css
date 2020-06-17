@@ -1,0 +1,14 @@
+.Box {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 20%; */
+    top: 20%;
+    width: 20%;
+    box-sizing: border-box;
+    /* min-height: 5%; */
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: whitesmoke;
+  }
