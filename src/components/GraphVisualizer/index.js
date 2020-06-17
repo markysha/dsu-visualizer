@@ -4,6 +4,7 @@ import Graph from "../../classes/graph";
 import cytoscape from "cytoscape";
 import styles from "./styles.module.css";
 import cytoscapeStyles from "./lib/cytoscapeStyles"
+import { popClick } from "../../actions";
 
 class GraphVisualizer extends React.Component {
   processClick(click) {
@@ -40,6 +41,11 @@ class GraphVisualizer extends React.Component {
     if (prevProps.graph !== this.props.graph) {
       this.init(this.props.graph);
     }
+    console.log(this.props.clicks);
+    if (this.props.clicks.length) {
+      this.processClick(this.props.clicks.shift());
+      this.props.popClick();
+    }
   }
 
   render() {
@@ -54,6 +60,8 @@ const mapStateToProps = state => ({
   clicks: state.clicks,
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  popClick: () => dispatch(popClick()),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(GraphVisualizer);

@@ -11,7 +11,7 @@ export default {
     userPanningEnabled: true,
   },
   node: {
-    'background-color': 'dark-grey',
+    'background-color': 'darkgrey',
     'label': 'data(id)',
     'shape': 'ellipse',
     'text-valign': 'center',

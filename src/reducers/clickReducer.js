@@ -1,4 +1,5 @@
 export default (state=[], action) => {
+  console.log(action);
     switch (action.type) {
       case "PUSH_CLICK":
         return [...state, action.payload];

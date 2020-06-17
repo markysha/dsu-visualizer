@@ -5,20 +5,20 @@ import { pushClick } from '../../actions';
 import { Box, List, Button }  from '@material-ui/core';
 import { PlayArrow, Pause, NavigateBefore, NavigateNext } from '@material-ui/icons';
 
-function VizualizationController() {
+function VizualizationController({ pushClick }) {
   return (
     <Box className={styles.Box}>
       <List>
-        <Button onclick={()=>pushClick("CONTROLLER_BEFORE")}>
+        <Button onClick={()=>pushClick("CONTROLLER_BEFORE")}>
           <NavigateBefore/>
         </Button>
-        <Button onclick={()=>pushClick("CONTROLLER_PLAY")}>
+        <Button onClick={()=>pushClick("CONTROLLER_PLAY")}>
           <PlayArrow/>
         </Button>
-        <Button onclick={()=>pushClick("CONTROLLER_PAUSE")}>
+        <Button onClick={()=>pushClick("CONTROLLER_PAUSE")}>
           <Pause/>
         </Button>
-        <Button onclick={()=>pushClick("CONTROLLER_NEXT")}>
+        <Button onClick={()=>pushClick("CONTROLLER_NEXT")}>
           <NavigateNext/>
         </Button>
       </List>

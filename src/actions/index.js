@@ -7,9 +7,14 @@ export const setGraph = graph => {
 }
 
 export const pushClick = click => {
-  console.log(click);
   return ({
     type: "PUSH_CLICK",
     payload: click,
+  });
+}
+
+export const popClick = () => {
+  return ({
+    type: "POP_CLICK",
   });
 }
