@@ -1,6 +1,7 @@
 .GraphVisualizer {
     position: fixed;
     left: 20%;
+    box-sizing: border-box;
     min-width: 80vw;
     min-height: 90%;
     border: 1px solid #000000;

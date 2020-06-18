@@ -23,15 +23,15 @@ export default class Graph {
     console.log(new Array(this.edges.length).map((_, i) => i));
 
     const dsu = new DSU(_.size(this.vertices));
-    let cost = 0;
+    this.spanningTreeCost = 0;
 
     this.sortedEdgesIndexes.forEach(index => {
       const edge = this.edges[index];
       edge.inSpanningTree = dsu.unite(edge.from, edge.to);
-      console.log("edge = ", edge, edge.inSpanningTree);
-      if (edge.inSpanningTree) cost += +edge.weight;
+      // console.log("edge = ", edge, edge.inSpanningTree);
+      if (edge.inSpanningTree) this.spanningTreeCost += +edge.weight;
     });
 
-    console.log("SPANNING TREE COST = ", cost);
+    console.log("SPANNING TREE COST = ", this.spanningTreeCost);
   }
 }

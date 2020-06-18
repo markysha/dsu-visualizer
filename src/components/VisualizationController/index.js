@@ -3,23 +3,29 @@ import { connect } from 'react-redux';
 import styles from './styles.module.css';
 import { pushClick } from '../../actions';
 import { Box, List, Button }  from '@material-ui/core';
-import { PlayArrow, Pause, NavigateBefore, NavigateNext } from '@material-ui/icons';
+import { PlayArrow, Pause, NavigateBefore, NavigateNext, SkipPrevious, SkipNext } from '@material-ui/icons';
 
 function VizualizationController({ pushClick }) {
   return (
     <Box className={styles.Box}>
       <List>
-        <Button onClick={()=>pushClick("CONTROLLER_BEFORE")}>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_SKIP_PREVIOUS")}>
+          <SkipPrevious/>
+        </Button>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_BEFORE")}>
           <NavigateBefore/>
         </Button>
-        <Button onClick={()=>pushClick("CONTROLLER_PLAY")}>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_PLAY")}>
           <PlayArrow/>
         </Button>
-        <Button onClick={()=>pushClick("CONTROLLER_PAUSE")}>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_PAUSE")}>
           <Pause/>
         </Button>
-        <Button onClick={()=>pushClick("CONTROLLER_NEXT")}>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_NEXT")}>
           <NavigateNext/>
+        </Button>
+        <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_SKIP_NEXT")}>
+          <SkipNext/>
         </Button>
       </List>
     </Box>
