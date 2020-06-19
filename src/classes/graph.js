@@ -4,6 +4,7 @@ export default class Graph {
   constructor(graph) {
     this.edges = [];
     this.vertices = {};
+    this.graphString = graph;
 
     graph
     .split("\n")
@@ -19,8 +20,6 @@ export default class Graph {
     this.sortedEdgesIndexes = new Array(this.edges.length).fill(0).map((_, i) => i).sort((a, b) => {
       return +this.edges[a].weight - this.edges[b].weight;
     });
-
-    console.log(new Array(this.edges.length).map((_, i) => i));
 
     const dsu = new DSU(_.size(this.vertices));
     this.spanningTreeCost = 0;

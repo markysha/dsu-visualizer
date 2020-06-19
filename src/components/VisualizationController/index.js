@@ -17,7 +17,7 @@ const inlineStyles = {
   LinearProgress: {
     backgroundColor: "grey",
     // opacity: "0.5",
-    height: "3px",
+    height: "5px",
     padding: "0px",
   },
 
@@ -29,6 +29,9 @@ const inlineStyles = {
 function VizualizationController({ classes, pushClick }) {
   return (
     <Box className={styles.Box}>
+      <Button onClick={()=>pushClick("CONTROLLER_START_VISUALIZATION")}>
+        Построить остовное дерево    
+      </Button>
       <List className={classes.List}>
         <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_SKIP_PREVIOUS")}>
           <SkipPrevious/>

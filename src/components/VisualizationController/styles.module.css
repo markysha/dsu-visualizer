@@ -1,8 +1,10 @@
 .Box {
   position: fixed;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
   /* left: 20%; */
-  top: 20%;
+  bottom: 0%;
   width: 20%;
   box-sizing: border-box;
   /* min-height: 5%; */
