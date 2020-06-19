@@ -32,6 +32,32 @@ class GraphVisualizer extends React.Component {
         this.visualizationPause();
         break;
 
+      case "CONTROLLER_BEFORE":
+        this.visualizationPause();
+        this.visualizationPrevStep();
+        break;
+      
+      case "CONTROLLER_NEXT":
+        this.visualizationPause();
+        this.visualizationNextStep();
+        break;
+
+      case "CONTROLLER_SKIP_PREVIOUS":
+        this.visualizationPause();
+        if (this.status.position.step === 0) {
+          this.setStatus({position:{index: this.status.position.index - 1, step: 1}});
+        } else {
+          this.setStatus({position:{index: this.status.position.index, step: 1}});  
+        }
+        this.visualizationPrevStep();
+        break;
+
+      case "CONTROLLER_SKIP_NEXT":
+        this.visualizationPause();
+        this.setStatus({position:{index: this.status.position.index, step: 1000}});
+        this.visualizationNextStep();
+        break;
+      
       default:
         break;
     }
@@ -51,17 +77,13 @@ class GraphVisualizer extends React.Component {
 
   visualizationNextStep() {
     console.log("visualizationNextStep");
-    const { index, step } = this.status.position;
-    if (index >= this.steps.length) {
+    
+    if (this.status.position.index >= this.steps.length) {
       this.visualizationPause();
       return;
     }
-    console.log(index, step);
-    if (index < this.steps.length && step < this.steps[index].steps.length) {
-      console.log(this.steps[index].steps[step].cytoscapeJson);
-      this.cy.json(this.steps[index].steps[step].cytoscapeJson);
-    }
-    if (step + 1 >= this.steps[index].steps.length) {
+
+    if (this.status.position.step + 1 >= this.steps[this.status.position.index].steps.length) {
       this.setStatus((status) => {
         ++status.position.index;
         status.position.step = 0;
@@ -73,10 +95,55 @@ class GraphVisualizer extends React.Component {
         return status;
       });
     }
+
+    const { index, step } = this.status.position;
+
+    if (index >= this.steps.length) {
+      this.visualizationPause();
+      return;
+    }
+    console.log(index, step);
+    if (index < this.steps.length && step < this.steps[index].steps.length) {
+      // console.log(this.steps[index].steps[step].cytoscapeJson);
+      this.cy.json(this.steps[index].steps[step].cytoscapeJson);
+    }
+    
+  }
+
+  visualizationPrevStep() {
+    console.log("visualizationPrevStep");
+    
+    if (this.status.position.index === 0 && this.status.position.step === 0) {
+      this.visualizationPause();
+      return;
+    }
+
+    if (this.status.position.step === 0) {
+      this.setStatus((status) => {
+        --status.position.index;
+        status.position.step = this.steps[status.position.index].steps.length - 1;
+        return status;
+      });
+    } else {
+      this.setStatus((status) => {
+        --status.position.step;
+        return status;
+      });
+    }
+    
+    const { index, step } = this.status.position;
+
+    console.log(index, step);
+    if (index < this.steps.length && step < this.steps[index].steps.length) {
+      // console.log(this.steps[index].steps[step].cytoscapeJson);
+      this.cy.json(this.steps[index].steps[step].cytoscapeJson);
+    }    
   }
 
   visualizationStart() {
     // console.log("visualizationStart");
+    if (this.status.type === "RUN") return;
+    
     this.setStatus({type: "RUN"});
     this.timerId = setInterval(() => this.visualizationStep(), 700);
   }
@@ -101,6 +168,11 @@ class GraphVisualizer extends React.Component {
   }
 
   init(graph) {
+    this.setStatus({
+      type: "PAUSE",
+      position: { index: 0, step: 0 }, 
+      direction: 1,
+    });
     this.graph = graph;
 
     this.cy = cytoscape({
