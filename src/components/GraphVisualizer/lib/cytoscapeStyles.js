@@ -25,7 +25,8 @@ export default {
     'text-rotation': 'autorotate',
   },
   edge_disabled: {
-    'line-color': 'whitesmoke',
+    // 'line-color': 'whitesmoke',
+    'line-style': 'dashed',
     'label': '',
   },
   edge_active: {
