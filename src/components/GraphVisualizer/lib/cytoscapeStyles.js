@@ -29,10 +29,12 @@ export default {
     'label': '',
   },
   edge_active: {
-    'line-color': '#98DC7B',
+    // 'line-color': '#98DC7B',
+    'line-color': 'yellow',
   },
   edge_added: {
-    'line-color': '#000',
+    // 'line-color': '#000',
+    'line-color': 'green',
   },
   edge_skipped: {
     'line-color': '#ccc',

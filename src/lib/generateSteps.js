@@ -21,7 +21,7 @@ const generateSteps = async (graph, cytoscapeJson) => {
     cy.$id(edgeId).addClass("edge_disabled");
   });
 
-  const steps = [getStep("Инициализация", {}, [getStep("Инициализация", cytoscapeJson, [])])];
+  const steps = [getStep("Инициализация", {}, [getStep("Инициализация", cy.json(), [])])];
   
   graph.sortedEdgesIndexes.forEach(index => {
     const edge = { ...graph.edges[index] };
