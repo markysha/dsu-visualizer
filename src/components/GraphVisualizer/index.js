@@ -78,7 +78,7 @@ class GraphVisualizer extends React.Component {
   visualizationStart() {
     // console.log("visualizationStart");
     this.setStatus({type: "RUN"});
-    this.timerId = setInterval(() => this.visualizationStep(), 2000);
+    this.timerId = setInterval(() => this.visualizationStep(), 700);
   }
 
   visualizationPause() {
@@ -124,6 +124,8 @@ class GraphVisualizer extends React.Component {
           .css(cytoscapeStyles.edge_added)
         .selector(".edge_skipped")
           .css(cytoscapeStyles.edge_skipped)
+        .selector(".edge_disabled")
+          .css(cytoscapeStyles.edge_disabled)
         ,
       ...cytoscapeStyles.root,
     });

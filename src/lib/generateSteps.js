@@ -15,6 +15,12 @@ const generateSteps = async (graph, cytoscapeJson) => {
   delete cytoscapeJson.layout;
   cy.json(cytoscapeJson);
 
+  graph.sortedEdgesIndexes.forEach(index => {
+    const edge = { ...graph.edges[index] };
+    const edgeId = `${edge.from}_${edge.to}`;
+    cy.$id(edgeId).addClass("edge_disabled");
+  });
+
   const steps = [getStep("Инициализация", {}, [getStep("Инициализация", cytoscapeJson, [])])];
   
   graph.sortedEdgesIndexes.forEach(index => {
@@ -23,7 +29,7 @@ const generateSteps = async (graph, cytoscapeJson) => {
     const children = [];
   
     // cy.batch(() => {
-    console.log(cy.$id(edgeId).addClass("edge_active"));
+    console.log(cy.$id(edgeId).removeClass("edge_disabled").addClass("edge_active"));
     // });
     children.push(getStep(`Посмотрим`, cy.json(false)))
 

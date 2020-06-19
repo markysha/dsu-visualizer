@@ -24,6 +24,10 @@ export default {
     'label': 'data(weight)',
     'text-rotation': 'autorotate',
   },
+  edge_disabled: {
+    'line-color': 'whitesmoke',
+    'label': '',
+  },
   edge_active: {
     'line-color': '#98DC7B',
   },
