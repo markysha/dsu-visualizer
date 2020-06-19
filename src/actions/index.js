@@ -18,3 +18,10 @@ export const popClick = () => {
     type: "POP_CLICK",
   });
 }
+
+export const setVizualizationProgress = (progress) => {
+  return ({
+    type: "SET_VIZUALIZATION_PROGRESS",
+    payload: progress,
+  })
+}

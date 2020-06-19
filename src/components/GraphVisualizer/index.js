@@ -4,7 +4,7 @@ import Graph from "../../classes/graph";
 import cytoscape from "cytoscape";
 import styles from "./styles.module.css";
 import cytoscapeStyles from "./lib/cytoscapeStyles"
-import { popClick } from "../../actions";
+import { popClick, setVizualizationProgress } from "../../actions";
 import generateSteps from "../../lib/generateSteps";
 
 class GraphVisualizer extends React.Component {
@@ -143,7 +143,7 @@ class GraphVisualizer extends React.Component {
   visualizationStart() {
     // console.log("visualizationStart");
     if (this.status.type === "RUN") return;
-    
+
     this.setStatus({type: "RUN"});
     this.timerId = setInterval(() => this.visualizationStep(), 700);
   }
@@ -164,6 +164,22 @@ class GraphVisualizer extends React.Component {
         ...this.status,
         ...newStatus({...this.status}),
       };
+    }
+
+    if (this.steps) {
+      const frames = this.steps.reduce((frames, step) => frames + step.steps.length, 0);
+      const curFrame = this.steps.reduce((frames, step, index) => {
+        if (index < this.status.position.index) {
+          return frames + step.steps.length
+        }
+        if (index === this.status.position.index) {
+          return frames + this.status.position.step + 1;
+        }
+        return frames;
+      }, 0);
+      
+      console.log("framesInfo = ", curFrame, frames);
+      this.props.setVizualizationProgress(100 * curFrame / frames);
     }
   }
 
@@ -239,6 +255,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   popClick: () => dispatch(popClick()),
+  setVizualizationProgress: (progress) => dispatch(setVizualizationProgress(progress)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GraphVisualizer);

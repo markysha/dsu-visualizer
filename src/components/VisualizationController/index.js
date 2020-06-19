@@ -26,13 +26,13 @@ const inlineStyles = {
   }
 };
 
-function VizualizationController({ classes, pushClick }) {
+function VizualizationController({ classes, pushClick, vizualizationProgress }) {
   return (
     <Box className={styles.Box}>
       {/* <Button onClick={()=>pushClick("CONTROLLER_START_VISUALIZATION")}>
         Построить остовное дерево    
       </Button> */}
-      <LinearProgress classes={{root: classes.LinearProgress, bar: classes.LinearProgress_Bar}} color="primary" variant="determinate" value={50} />
+      <LinearProgress classes={{root: classes.LinearProgress, bar: classes.LinearProgress_Bar}} color="primary" variant="determinate" value={vizualizationProgress} />
       <List className={classes.List}>
         <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_SKIP_PREVIOUS")}>
           <SkipPrevious/>
@@ -57,7 +57,9 @@ function VizualizationController({ classes, pushClick }) {
   );
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  vizualizationProgress: state.vizualizationProgress,
+})
 
 const mapDispatchToProps = dispatch => ({
   pushClick: click => dispatch(pushClick(click)),
