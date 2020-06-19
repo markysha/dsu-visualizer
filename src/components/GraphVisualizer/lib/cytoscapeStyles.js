@@ -8,7 +8,7 @@ export default {
     },
     
     userZoomingEnabled: false,
-    userPanningEnabled: true,
+    userPanningEnabled: false,
   },
   node: {
     'background-color': 'darkgrey',

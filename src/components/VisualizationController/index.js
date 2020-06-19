@@ -15,9 +15,9 @@ const inlineStyles = {
   },
   
   LinearProgress: {
-    backgroundColor: "grey",
+    backgroundColor: "lightgrey",
     // opacity: "0.5",
-    height: "5px",
+    height: "4px",
     padding: "0px",
   },
 
@@ -29,9 +29,10 @@ const inlineStyles = {
 function VizualizationController({ classes, pushClick }) {
   return (
     <Box className={styles.Box}>
-      <Button onClick={()=>pushClick("CONTROLLER_START_VISUALIZATION")}>
+      {/* <Button onClick={()=>pushClick("CONTROLLER_START_VISUALIZATION")}>
         Построить остовное дерево    
-      </Button>
+      </Button> */}
+      <LinearProgress classes={{root: classes.LinearProgress, bar: classes.LinearProgress_Bar}} color="primary" variant="determinate" value={50} />
       <List className={classes.List}>
         <Button style={{minWidth:"0px"}} onClick={()=>pushClick("CONTROLLER_SKIP_PREVIOUS")}>
           <SkipPrevious/>
@@ -52,7 +53,6 @@ function VizualizationController({ classes, pushClick }) {
           <SkipNext/>
         </Button>
       </List>
-      <LinearProgress classes={{root: classes.LinearProgress, bar: classes.LinearProgress_Bar}} color="primary" variant="determinate" value={50} />
     </Box>
   );
 }

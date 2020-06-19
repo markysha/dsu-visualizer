@@ -12,6 +12,7 @@ const getStep = (name, cytoscapeJson, steps = []) => {
 const generateSteps = async (graph, cytoscapeJson) => {
   console.log(cytoscapeJson);
   const cy = cytoscape({headless: true});
+  delete cytoscapeJson.layout;
   cy.json(cytoscapeJson);
 
   const steps = [getStep("Инициализация", {}, [getStep("Инициализация", cytoscapeJson, [])])];
